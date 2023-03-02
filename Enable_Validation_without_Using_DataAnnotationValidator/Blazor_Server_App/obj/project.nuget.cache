@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "dgSpecHash": "nFaeQkvZIgKxqmzClR+vo1+DyLe4NwhSYRfAnFmHSNBh2ExOZofu9BdtnuFwCXM4JIKfrhfUksNlB8XxLSka7A==",
+  "success": true,
+  "projectFilePath": "D:\\Videoteam\\FAQgrid\\blazorgrid\\validator_without_DataAnotation\\Blazor_Server_App\\Blazor_Server_App\\Blazor_Server_App.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.5\\microsoft.aspnetcore.authorization.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.5\\microsoft.aspnetcore.components.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.5\\microsoft.aspnetcore.components.analyzers.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\6.0.5\\microsoft.aspnetcore.components.forms.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.aspnetcore.components.web\\6.0.5\\microsoft.aspnetcore.components.web.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.aspnetcore.metadata\\6.0.5\\microsoft.aspnetcore.metadata.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.1\\microsoft.extensions.logging.abstractions.6.0.1.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\microsoft.jsinterop\\6.0.5\\microsoft.jsinterop.6.0.5.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\syncfusion.blazor\\20.4.0.51\\syncfusion.blazor.20.4.0.51.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\syncfusion.excelexport.net.core\\20.4.0.51\\syncfusion.excelexport.net.core.20.4.0.51.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\syncfusion.licensing\\20.4.0.51\\syncfusion.licensing.20.4.0.51.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\syncfusion.pdfexport.net.core\\20.4.0.51\\syncfusion.pdfexport.net.core.20.4.0.51.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\KalirajKaruppasamy\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

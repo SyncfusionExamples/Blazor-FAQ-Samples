@@ -1,0 +1,30 @@
+﻿  @page "/"
+    
+   @using Blazor_Server_App.FluentValidation;
+
+<EditForm Model="employee" OnValidSubmit="SubmitForm">
+    <FluentValidationValidator TValidator="EmployeeValidator" />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <InputText @bind-Value="employee.Name" class="form-control" id="name" />
+    </div>
+
+    <div class="form-group">
+        <label for="age">Organization:</label>
+        <InputText @bind-Value="employee.Organization" class="form-control" />
+    </div>
+    <div style="margin-top: 10px;"><button type="submit" class="btn btn-primary">Submit</button></div>
+
+
+</EditForm>
+    
+   @code {
+       Employee employee { get; set; } = new Employee();
+    
+       public void SubmitForm()
+       {
+    
+       }
+   }
