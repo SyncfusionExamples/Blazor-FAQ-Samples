@@ -1,0 +1,31 @@
+﻿@page "/"
+
+<EditForm EditContext="@editContext" OnValidSubmit="@Submit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="mt-2   col-md-12">
+        Name: <InputText id="name" @bind-Value="_customer.Name" />
+    </div>
+    <div class="mt-2   col-md-12">
+        Organization Code: <InputText id="organizationCode" @bind-Value="_customer.OrganizationCode" />
+    </div>
+    <div class="mt-2   col-md-12">
+        <button type="submit">Submit</button>
+    </div>
+</EditForm>
+
+@code {
+    private Customer _customer = new Customer();
+    private EditContext? editContext;
+
+    protected override void OnInitialized ()
+    {
+        editContext = new(_customer);
+        editContext.SetFieldCssClassProvider(new CustomFieldCssClassProvider());
+    }
+
+    private void Submit ()
+    {
+  
+    }
+   }      
