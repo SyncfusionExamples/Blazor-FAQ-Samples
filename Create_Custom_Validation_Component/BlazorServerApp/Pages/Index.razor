@@ -1,0 +1,45 @@
+﻿@page "/"
+@using System.ComponentModel.DataAnnotations
+  
+<EditForm style="width:470px;" Model="_login" OnValidSubmit="Submit">
+     <DataAnnotationsValidator />
+     <div class="form-group row">
+         <label for="name" class="col-md-2 col-form-label">Name:</label>
+         <div class="col-md-10">
+             <InputText id="name" class="form-control" @bind-Value="_login.UserName" />
+             <ValidationMessage For="@(() => _login.UserName)" />
+         </div>
+     </div>
+  
+     <div class="form-group row">
+         <label for="supplier" class="col-md-2 col-form-label">Password:</label>
+         <div class="col-md-10">
+             <InputText id="supplier" class="form-control" @bind-Value="_login.Password" />
+             <ValidationMessage For="@(() => _login.Password)" />
+         </div>
+     </div>
+  
+     <div class="row">
+         <div class="col-md-12 text-right">
+             <button type="submit" class="btn btn-success">Submit</button>
+         </div>
+     </div>
+ </EditForm>
+  
+ @code {
+     private Login _login = new Login();
+  
+     public void Submit()
+     {
+         Console.WriteLine($"User name is {_login.UserName} and password is {_login.Password}");
+     }
+  
+     public class Login
+     {
+         [Required]
+         public string UserName { get; set; }
+         [Required]
+         [CustomValidation(ErrorMessage = "The entered password is wrong ", ValidPassword = "Blazor")]
+         public string Password { get; set; }
+     }
+ } 
