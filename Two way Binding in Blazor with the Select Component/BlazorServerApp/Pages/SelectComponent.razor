@@ -1,0 +1,48 @@
+﻿@page "/selectcomponent"
+<div>
+    <select id="Item" class="form-control-sm" @bind="@ListItem">
+        @foreach (var list in SelectList)
+        {
+            @if (ListItem != null && String.Equals(list, ListItem, StringComparison.OrdinalIgnoreCase))
+            {
+                <option selected value="@list">@list</option>
+            }
+            else
+            {
+                <option value="@list">@list</option>
+            }
+        }
+    </select>
+</div>
+
+@code {
+    public IEnumerable<string> SelectList = new List<string>()
+    {
+        "List 1",
+        "List 2",
+        "List 3",
+        "List 4",
+        "List 5"
+     };
+
+    private string? listItem { get; set; }
+
+    [Parameter]
+    public string ListItem
+    {
+        get { return listItem ?? string.Empty; }
+        set {
+            if (listItem != value)
+            {
+                listItem = value;
+                if (ListItemChanged.HasDelegate)
+                {
+                    ListItemChanged.InvokeAsync(value);
+                }
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> ListItemChanged { get; set; }
+}
