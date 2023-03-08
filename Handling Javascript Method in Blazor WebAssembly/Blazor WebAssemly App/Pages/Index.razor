@@ -1,0 +1,10 @@
+﻿@page "/"
+@inject IJSRuntime JsRuntime
+
+@code {
+    protected override async void OnInitialized ()
+    {
+        string content = "JavaScript function called with parameter";
+        await JsRuntime.InvokeVoidAsync("jsFunction", content);
+    }
+}
