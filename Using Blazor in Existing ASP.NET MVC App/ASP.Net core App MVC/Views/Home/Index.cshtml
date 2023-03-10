@@ -1,0 +1,6 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    @(await Html.RenderComponentAsync<ASP.Net_core_App_MVC.Views.Shared.Component.Component>(RenderMode.ServerPrerendered, new { Data = " Hello World " }))
+</div> 
