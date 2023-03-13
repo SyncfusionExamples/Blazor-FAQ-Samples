@@ -1,0 +1,30 @@
+﻿@page "/"
+@using BlazorServerApp.Models
+   <EditForm Model="_product" OnValidSubmit="Submit" style="width:600px;">
+       <DataAnnotationsValidator />
+       <ValidationSummary/>
+       <div class="form-group   row">
+           <label for="name" class="col-md-2 col-form-label">Name:</label>
+           <div class="col-md-10">
+               <InputText id="name" class="form-control" @bind-Value="_product.Name" />
+               <ValidationMessage For="@(()   => _product.Name)" />
+           </div>
+       </div>
+       <div class="form-group   row">
+           <label for="organization" class="col-md-2 col-form-label">Organization:</label>
+           <div class="col-md-10">
+               <InputText id="supplier" class="form-control" @bind-Value="_product.Organization" />
+               <ValidationMessage For="@(()   => _product.Organization)" />
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-md-12   text-right">
+               <button type="submit" class="btn btn-success">Submit</button>
+           </div>
+       </div>
+   </EditForm>
+   @code{
+    private EmployeeDetails _product = new EmployeeDetails();
+    public void Submit () =>
+        Console.WriteLine($"{_product.Name}, {_product.Organization}");
+   }
