@@ -1,0 +1,19 @@
+﻿@page "/ConfirmDialog"
+@using Syncfusion.Blazor.Popups
+@using Syncfusion.Blazor.Buttons
+@inject SfDialogService DialogService
+<div>
+    <SfButton @onclick="@ConfirmBtn">Confirm</SfButton>
+</div>
+<div class="status" style="padding-top:10px">
+    @DialogStatus
+</div>
+@code {
+    private string? DialogStatus { get; set; }
+    private async Task ConfirmBtn ()
+    {
+        bool isConfirm = await DialogService.ConfirmAsync("Are you sure you want to permanently delete these items?", "Delete Multiple Items");
+        string confirmMessage = isConfirm ? "confirmed" : "canceled";
+        this.DialogStatus = $"The user {confirmMessage} the dialog box.";
+    }
+}
