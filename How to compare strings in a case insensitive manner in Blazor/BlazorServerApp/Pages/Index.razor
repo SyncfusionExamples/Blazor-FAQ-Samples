@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<h1>Case in-sensitive string comparision</h1>
+
+<br />
+
+<EditForm Model="@_stringCompare">
+    String 1:
+    <InputText id="string1" @bind-Value="_stringCompare.String1" />
+    <br />
+    String 2:
+    <InputText id="string2" @bind-Value="_stringCompare.String2" />
+    <br />
+</EditForm>
+
+<br />
+
+<button @onclick="Compare">Compare</button>
+
+<br />
+<br />
+
+<p>@Output</p>
+
+<br />
+
+@code {
+
+    private StringCompare _stringCompare = new StringCompare();
+    public string Output = "";
+
+    public class StringCompare
+    {
+        public string? String1 { get; set; }
+        public string? String2 { get; set; }
+    }
+
+    public async void Compare ()
+    {
+        int CheckValue = String.Compare(_stringCompare.String1, _stringCompare.String2, true);
+        Output = "Entered Strings are " + (CheckValue == 0 ? "" : "not ") + "Similar";
+        await Task.Run(() => TimeOutMethod());
+        Output = "";
+        await Task.CompletedTask;
+    }
+
+    void TimeOutMethod () => Task.Delay(3000).Wait();
+}
