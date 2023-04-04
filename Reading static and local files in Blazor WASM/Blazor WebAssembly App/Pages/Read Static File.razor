@@ -1,0 +1,15 @@
+﻿@page "/"
+@inject HttpClient HttpClient
+
+<button @onclick="ReadFile">Read File</button>
+
+@code {
+    private string? fileContent;
+
+    private async Task ReadFile ()
+    {
+        fileContent = await HttpClient.GetStringAsync("/files/sample.txt");
+        Console.WriteLine(fileContent);
+        // process the file content here
+    }
+}
