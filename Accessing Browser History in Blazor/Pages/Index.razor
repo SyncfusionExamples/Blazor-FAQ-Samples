@@ -1,0 +1,13 @@
+﻿@page "/"
+
+@inject IJSRuntime JSRuntime;
+<p>Here, JavaScript function that uses the browser's history object to go back one step in the history stack</p>
+<button @onclick="GoBack">Go back</button>
+
+@code {
+    private async Task GoBack ()
+    {
+        await JSRuntime.InvokeAsync<object>("goBack");
+    }
+}
+
