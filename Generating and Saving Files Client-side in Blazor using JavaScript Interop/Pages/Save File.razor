@@ -1,0 +1,28 @@
+﻿@page "/savefile"
+
+@inject IJSRuntime JSRuntime
+
+<h1>Blazor Save & Generate File</h1><textarea @bind="fileContent" 
+ style="width:150px;height:100px" />
+
+<button @onclick="SaveFile">SaveFile</button>
+
+<button @onclick="DownloadFile">GenerateFile</button>
+
+@code {
+
+    string? Content;
+
+    string? fileContent;
+
+    string fileName = "file.txt";
+
+    public void SaveFile ()
+    {
+        Content = fileContent;
+    }
+    public async void DownloadFile ()
+    {
+        await JSRuntime.InvokeAsync<object>("saveFile", fileName, Content);
+    }
+}
