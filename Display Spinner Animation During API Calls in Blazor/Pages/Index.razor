@@ -1,0 +1,30 @@
+﻿@page "/"
+
+<h1>Counter</h1>
+
+<p>
+    Current count: <div class="@(spin ? "loader" : "")"> @(spin ? "" : currentCount.ToString()) </div>
+</p>
+
+<button class="btn btn-primary" @onclick="@IncrementCount"> Click me </button>
+<button class="btn btn-dark" @onclick="@AsyncCallBack"> API Call Back </button>
+
+@code {
+    int currentCount = 0;
+    bool spin = false;
+    void IncrementCount ()
+    {
+        currentCount++;
+    }
+
+    async Task AsyncCallBack ()
+    {
+        spin = true;
+        await Task.Run(() => APICallBack());  //<==check this!!!
+        currentCount++;
+        spin = false;
+        await Task.CompletedTask;
+    }
+
+    void APICallBack () => Task.Delay(1500).Wait();
+}
