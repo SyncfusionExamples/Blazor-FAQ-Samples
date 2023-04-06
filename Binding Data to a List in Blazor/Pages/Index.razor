@@ -1,0 +1,27 @@
+﻿@page "/"
+
+<h1>Bind List</h1>
+
+<button class="btn btn-primary" @onclick="Generate">Generate and Bind to List</button>
+
+@if (list != null)
+{
+    @foreach (var item in list)
+    {
+                <li>@item</li>
+    }
+}
+
+@code {
+    List<int>? list;
+    const int cMaxNumbers = 10;
+
+    protected void Generate ()
+    {
+        list = new List<int>(cMaxNumbers);
+        for (int i = 0; i < cMaxNumbers; i++)
+        {
+            list.Add(i);
+        }
+    }
+}
