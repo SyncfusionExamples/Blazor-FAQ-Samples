@@ -1,0 +1,19 @@
+﻿@page "/"
+
+@inject IJSRuntime jsRuntime
+
+<input type="text" @ref="myDiv" />
+
+
+@code {
+    string KeyPressed = "";
+    protected ElementReference myDiv;  // set the @ref for attribute
+
+    protected async override Task OnAfterRenderAsync ( bool firstRender )
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeVoidAsync("SetFocusToElement", myDiv);
+        }
+    }
+}
