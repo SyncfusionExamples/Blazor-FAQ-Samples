@@ -1,0 +1,20 @@
+﻿@page "/"
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+
+<h2>@Name</h2>
+<button @onclick="Clear">Clear LocalStorage</button>
+@code {
+    public string? Name;
+    protected override async Task OnAfterRenderAsync ( bool firstRender )
+    {
+        await localStorage.SetItemAsync("ID", "20019");
+        await localStorage.SetItemAsync("Name", "John Smith");
+        Name = "ID: " + await localStorage.GetItemAsync<string>("ID") + "Name : " + await localStorage.GetItemAsync<string>("Name");
+    }
+    public async void Clear ()
+    {
+        //this will clear the local storage
+        await localStorage.ClearAsync();
+    }
+
+}
