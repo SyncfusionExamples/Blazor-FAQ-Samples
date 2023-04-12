@@ -1,0 +1,13 @@
+﻿@page "/"
+@inject NavigationManager nav
+@inject IJSRuntime JSRuntime
+<h1>Detect Navigation events</h1>
+@code {
+    protected override void OnInitialized ()
+    {
+        nav.LocationChanged += ( o, e ) =>
+        {
+            JSRuntime.InvokeVoidAsync("alert", "User has navigated to other page");
+        };
+    }
+}
