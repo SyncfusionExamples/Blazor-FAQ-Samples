@@ -1,0 +1,23 @@
+﻿@inject NavigationManager UriHelper
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState>? StateAuthenticate { get; set; }
+
+    protected override async Task OnInitializedAsync ()
+    {
+        var authenticationState = StateAuthenticate!=null? await StateAuthenticate: null;
+        if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
+        {
+            var returnUri = UriHelper.ToBaseRelativePath(UriHelper.Uri);
+            if (string.IsNullOrWhiteSpace(returnUri))
+            {
+                UriHelper.NavigateTo("YourLoginPath", true);
+            }
+            else
+            {
+                UriHelper.NavigateTo($"YourLoginPath?returnUrl={returnUri}", true);
+            }
+        }
+    }
+}
