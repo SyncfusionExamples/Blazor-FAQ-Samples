@@ -1,0 +1,19 @@
+﻿[index.razor]
+
+@page "/"
+
+@inject IJSRuntime JSRuntime
+
+<h1>Display Google Map</h1>
+<div id="map" style="height:500px;width:100%;">
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync ( bool firstRender )
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initialize", null);
+        }
+    }
+}
