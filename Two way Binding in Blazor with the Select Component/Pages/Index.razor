@@ -1,0 +1,17 @@
+﻿@page "/"
+
+<div>
+    <label>Bind Value</label>
+    <input type="text" @bind="@Content" @bind:event="oninput" />
+    <p>@Content</p>
+</div>
+
+<div>
+    <SelectComponent @bind-ListItem="@Content" />
+</div>
+
+@code {
+    [Parameter]
+    public string Content { get; set; } = string.Empty;
+
+}
