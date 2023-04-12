@@ -1,0 +1,38 @@
+﻿@page "/"
+@using BlazorServerApp.Data
+@using BlazorServerApp.Services
+@inherits OwningComponentBase<EmpService>
+
+<h1>Insert Record Into Database Using Stored Procedure</h1>
+
+
+<hr/>
+<EditForm Model="@ec" OnValidSubmit="@Insertdata">
+    <table border="1">
+        <tr>
+            <td>Employee Name</td>
+            <td><input type="text" placeholder="Enter Employee Name" @bind="ec.Empname"/></td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td><input type="text" placeholder="Enter Department" @bind="ec.Department" /></td>
+        </tr>
+        <tr>
+            <td>Joindate</td>
+            <td><InputDate @bind-Value="ec.Jointdate"></InputDate></td>
+        </tr>
+        <tr>
+            <td>Joindate</td>
+            <td><input type="submit" value="Insert"/></td>
+        </tr>
+    </table>
+</EditForm>
+
+@code{
+    EmpClass ec = new EmpClass();
+    void Insertdata ()
+    {
+        ec.Empid = 0;
+        Service.Addnewrec(ec);
+    }
+}
