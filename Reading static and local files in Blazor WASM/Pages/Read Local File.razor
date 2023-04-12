@@ -1,0 +1,30 @@
+﻿@page "/read localfile"
+
+<InputFile OnChange="@HandleFileSelection" />
+<button @onclick="ReadFile">Read File</button>
+
+@if (!string.IsNullOrEmpty(fileContent))
+{
+    <div>@fileContent</div>
+}
+
+@code {
+    private IBrowserFile? file;
+    private string? fileContent;
+
+    private void HandleFileSelection(InputFileChangeEventArgs e)
+    {
+        file = e.File;
+    }
+
+    private async Task ReadFile()
+    {
+        if (file != null)
+        {
+            var stream = file.OpenReadStream();
+            var buffer = new byte[file.Size];
+            await stream.ReadAsync(buffer, 0, (int)file.Size);
+            fileContent = System.Text.Encoding.UTF8.GetString(buffer);
+        }
+    }
+}
