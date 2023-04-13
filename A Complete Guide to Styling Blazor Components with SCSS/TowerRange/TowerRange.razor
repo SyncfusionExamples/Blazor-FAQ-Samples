@@ -1,0 +1,24 @@
+﻿
+<div class="tower">
+    <div class="tower-range @BackgroundStyle"
+         style="height: @Height"
+         aria-valuenow="@CurrentValue"
+         aria-valuemin="0"
+         aria-valuemax="80">
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public int CurrentValue { get; set; }
+
+    [Parameter]
+    public BackgroundColor Color { get; set; } = BackgroundColor.LightGrey;
+
+    public enum BackgroundColor { LightGrey, MediumGrey, DarkGrey }
+
+    private string BackgroundStyle => $"BackColor-{Color.ToString()}";
+
+    private string Height => $"{CurrentValue}%";
+   }      

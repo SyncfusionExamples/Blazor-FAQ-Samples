@@ -1,0 +1,36 @@
+﻿
+.tower {
+    width: 15px;
+    height: 200px;
+    background-color: #fff;
+    position: relative;
+}
+
+.tower-range {
+    width: 100%;
+    display: block;
+    font-family: arial;
+    font-size: 12px;
+    background-color: white;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+}
+
+$BackColor-LightGrey: #d4d3d2;
+$BackColor-MediumGrey: #8f9194;
+$BackColor-DarkGrey: #585959;
+
+.BackColor {
+    &-LightGrey {
+        background-color: $BackColor-LightGrey;
+    }
+
+    &-MediumGrey {
+        background-color: $BackColor-MediumGrey;
+    }
+
+    &-DarkGrey {
+        background-color: $BackColor-DarkGrey;
+    }
+}

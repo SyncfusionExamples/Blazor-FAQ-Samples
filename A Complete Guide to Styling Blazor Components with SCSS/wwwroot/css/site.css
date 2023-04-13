@@ -1,0 +1,34 @@
+﻿.tower {
+  width: 15px;
+  height: 200px;
+  background-color: #fff;
+  position: relative;
+}
+
+.tower-range {
+  width: 100%;
+  display: block;
+  font-family: arial;
+  font-size: 12px;
+  background-color: white;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+}
+
+.BackColor-LightGrey {
+  background-color: #d4d3d2;
+}
+.BackColor-MediumGrey {
+  background-color: #8f9194;
+}
+.BackColor-DarkGrey {
+  background-color: #585959;
+}
+
+.marginStyle {
+  margin-left: 2px;
+  display: inline-block;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///D:/Videoteam/FAQgrid/blazorgrid/style%2520Blazor%2520components%2520with%2520SCSS/BlazorApp/BlazorApp/TowerRange/TowerRange.scss%22,%22file:///D:/Videoteam/FAQgrid/blazorgrid/style%2520Blazor%2520components%2520with%2520SCSS/BlazorApp/BlazorApp/Shared/Helper.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACA;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAQA;EACI,kBANc;;AASlB;EACI,kBATe;;AAYnB;EACI,kBAZa;;;ACrBpB;EACG;EACA%22%7D */
