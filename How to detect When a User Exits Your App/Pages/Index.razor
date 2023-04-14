@@ -1,0 +1,15 @@
+﻿@page "/"
+
+@implements IDisposable;
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code {
+
+    public void Dispose ()
+    {
+        Console.WriteLine("This event calling, when closing or navigate this page");
+    }
+}
