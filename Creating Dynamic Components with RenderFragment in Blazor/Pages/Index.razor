@@ -1,0 +1,23 @@
+﻿@page "/"
+
+<div id="component-container">
+    @DynamicRender
+</div>
+
+<button @onclick="RenderComponent">Dynamic Component</button>
+
+@code {
+
+    private RenderFragment? DynamicRender { get; set; }
+
+    private RenderFragment CreateComponent () => builder =>
+    {
+        builder.OpenComponent(0, typeof(TextBox));
+        builder.AddAttribute(1, "Title", "Enter your text");
+        builder.CloseComponent();
+    };
+    private void RenderComponent ()
+    {
+        DynamicRender = CreateComponent();
+    }
+}
