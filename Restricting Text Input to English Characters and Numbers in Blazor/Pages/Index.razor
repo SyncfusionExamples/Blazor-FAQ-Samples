@@ -1,0 +1,24 @@
+﻿@page "/"
+@using System.ComponentModel.DataAnnotations;
+<EditForm Model="@model" OnValidSubmit="handleSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <InputText @bind-Value="@model.Name"></InputText>
+    <ValidationMessage For="()=>model.Name"></ValidationMessage>
+    <button type="submit">submit</button>
+</EditForm>
+
+@code {
+
+    private Countries model = new Countries();
+
+    public class Countries
+    {
+        [Required]
+        [RegularExpression(@"^[a-zA-Z0-9 ]+$", ErrorMessage = "Special characters are not accepted.")]
+        public string? Name { get; set; }
+    }
+    private void handleSubmit ()
+    {
+        //
+    }
+}
