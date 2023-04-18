@@ -1,0 +1,69 @@
+﻿@page "/"
+
+@using BlazorServerApp.Data
+@inject WeatherForecastService ForecastService
+
+<h3>Dialog</h3>
+<button class="btn btn-primary"
+        @onclick="OpenDialog">
+    Open Dialog
+</button>
+@if (ShowPopup)
+{
+    <!-- This is the popup to create or edit a forecast -->
+    <div class="modal" tabindex="-1" style="display:block" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Modal Dialog</h3>
+                    <!-- Button to close the popup -->
+                    <button type="button" class="close"
+                            @onclick="ClosePopup">
+                        <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <!-- Edit form for the current forecast -->
+                <div class="modal-body">
+                    <input class="form-control" type="text"
+                           placeholder="Celsius forecast"
+                           @bind="forecasts[0].TemperatureC" />
+                    <input class="form-control" type="text"
+                           placeholder="Summary"
+                           @bind="forecasts[0].Summary" />
+                    <br />
+                    <!-- Button to save the forecast -->
+                    <button class="btn btn-primary"
+                            @onclick="Save">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@code {
+
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+    bool ShowPopup = false;
+    void OpenDialog()
+    {
+        // Open the Popup
+        ShowPopup = true;
+    }
+    void ClosePopup()
+    {
+        // closes the Popup
+        ShowPopup = false;
+    }
+    void Save()
+    {
+        //closes dialog after the save execution
+        ShowPopup = false;
+    }
+}
