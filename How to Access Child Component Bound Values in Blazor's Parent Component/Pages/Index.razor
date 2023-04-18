@@ -1,0 +1,15 @@
+﻿@page "/"
+
+<TextBoxComponent @ref="textbox" @bind-Value="name" FieldName="Name" MaxLength="20" />
+<TextBoxComponent @bind-Value="address" FieldName="Address" />
+<button @onclick="Click">Click </button>
+@code {
+    TextBoxComponent? textbox;
+    string name = "Rafael Nadal";
+    string address = "New York";
+    private void Click ()
+    {
+        var fNme = textbox!.FieldName;
+        var maxLen = textbox.MaxLength;
+    }
+}  

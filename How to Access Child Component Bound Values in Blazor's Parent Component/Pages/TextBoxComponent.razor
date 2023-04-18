@@ -1,0 +1,40 @@
+﻿
+<div class="form-group row mb-2">
+    <label class="col-md-3 col-form-label"
+           for="Name">@FieldName</label>
+    <div class="col-md7">
+        <input class="form-control"
+               type="text"
+               placeholder="@FieldName" value="@Value" @oninput="OnValueChanged" maxlength="@MaxLength" />
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public string? FieldName { get; set; }
+
+    [Parameter]
+    public int MaxLength { get; set; } = -1;
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    string? LengthString;
+    int TextLength;
+
+    protected override void OnInitialized ()
+    {
+        TextLength = Value!.Length;
+        LengthString = (MaxLength == -1) ? "Unlimited" : MaxLength.ToString();
+    }
+
+    private Task OnValueChanged ( ChangeEventArgs e )
+    {
+        Value = e.Value!.ToString();
+        TextLength = Value!.Length;
+        return ValueChanged.InvokeAsync(Value);
+    }
+}
