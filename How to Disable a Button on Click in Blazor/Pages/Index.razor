@@ -1,0 +1,25 @@
+﻿@page "/"
+
+<button class="btn btn-primary" disabled=@IsTaskRunning @onclick="Clicked"> @ButtonName</button>
+
+@code {
+
+    bool IsTaskRunning = false;
+    string ButtonName = "Click Me";
+    async void Clicked ()
+    {
+        IsTaskRunning = true;
+        ButtonName = "Disabled";
+        await OnButtonClick();
+
+        //IsTaskRunning = false; use this to enable the button after the button click function executed
+        StateHasChanged();
+    }
+
+    Task OnButtonClick ()
+    {
+        //here user can perform buton click function
+        return Task.Delay(6000);
+    }
+
+}
