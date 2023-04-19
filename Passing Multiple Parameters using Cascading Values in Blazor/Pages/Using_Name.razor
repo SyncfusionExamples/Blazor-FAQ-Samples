@@ -1,0 +1,13 @@
+﻿@page "/usingname"
+<h1>Example of multiple parameters using cascading values in Blazor by name</h1>
+<CascadingValue Value="@Id" Name="EmpId">
+	<CascadingValue Value="@Name" Name="EmpName">
+		<ChildComponent></ChildComponent>
+	</CascadingValue>
+</CascadingValue>
+
+@code {
+	int Id = 1;
+	string Name = "Test";
+}
+

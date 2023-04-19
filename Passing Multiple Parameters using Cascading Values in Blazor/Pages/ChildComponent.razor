@@ -1,0 +1,9 @@
+﻿<p>Employee Id:@EmployeeId </p>
+<p>Employee Name:@EmployeeName </p>
+
+@code {
+	[CascadingParameter(Name = "EmpId")]
+	private int EmployeeId { get; set; }
+	[CascadingParameter(Name = "EmpName")]
+	private string? EmployeeName { get; set; }
+}

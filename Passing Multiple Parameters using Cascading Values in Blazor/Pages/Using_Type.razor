@@ -1,0 +1,12 @@
+﻿@page "/usingtype"
+<h1>Example of multiple parameters using cascading values in Blazor by type</h1>
+<CascadingValue Value="@Name1">
+<CascadingValue Value="@Name">
+            <CascadingChild></CascadingChild>
+</CascadingValue>
+</CascadingValue>
+ 
+@code {
+string Name="Exam";
+string Name1 = "Test";
+}
