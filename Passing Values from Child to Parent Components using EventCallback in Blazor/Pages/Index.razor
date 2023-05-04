@@ -1,17 +1,9 @@
-﻿@page "/"
+@page "/"
 @using BlazorApp
-<h1>Parent component</h1>
-<Child_component OnClick="ClickHandler"></Child_component>
+<h1>Parent Component</h1>
 
-<p>@message</p>
+<Child_component @bind-Password="_password" />
 
 @code {
-
-    string message = "Hello from ParentComponent";
-
-    void ClickHandler(string newMessage)
-    {
-        message = newMessage;
-    }
-
-}
+    private string? _password;
+ }
