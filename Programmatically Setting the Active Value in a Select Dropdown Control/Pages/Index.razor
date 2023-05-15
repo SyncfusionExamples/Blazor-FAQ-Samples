@@ -1,0 +1,75 @@
+﻿@page "/"
+
+
+<select class="form-control" value="@listdefault" @onchange="@OnSelect" style="width:150px">
+    @foreach (var template in templates)
+    {
+        <option value=@template>@template</option>
+    }
+</select>
+
+<h5>@selectedString</h5>
+<select class="form-control" value="@citydefault" @onchange="@OnSelectCity" style="width:150px">
+    @foreach (var template in citytemplates)
+    {
+        <option value=@template>@template</option>
+    }
+</select>
+<h5>@selectedCity</h5>
+<button class="btn btn-primary" @onclick="@Change">Change</button>
+
+@code {
+    List<string> templates = new List<string>() { "America", "China", "India", "Russia", "England" };
+    List<string> citytemplates = new List<string>();
+    List<string> usa = new List<string>() { "Los-Angeles", "Florida", "Newyork", "Washington", "California" };
+    List<string> china = new List<string>() { "Wuhan", "Beijing", "Shanghai", "Macau", "Taipei " };
+    List<string> india = new List<string>() { "New-Delhi", "Mumbai", "Chennai", "Bangalore", "Hyderabad" };
+    List<string> russia = new List<string>() { "Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Kazan" };
+    List<string> england = new List<string>() { "Birmingham", "Cambridge", "Manchester", "Leicester", "London" };
+    string selectedString = "";
+    string selectedCity = "";
+    string listdefault = "India";
+    string citydefault = "Mumbai";
+    void OnSelect ( ChangeEventArgs e )
+    {
+        if (e.Value?.ToString() == "America")
+        {
+            citytemplates = usa;
+        }
+        else if (e.Value?.ToString() == "China")
+        {
+            citytemplates = china;
+        }
+        else if (e.Value?.ToString() == "India")
+        {
+            citytemplates = india;
+        }
+        else if (e.Value?.ToString() == "Russia")
+        {
+            citytemplates = russia;
+        }
+        else
+        {
+            citytemplates = england;
+        }
+        selectedString = "Selected Country is: " + e.Value?.ToString();
+
+        StateHasChanged();
+        Console.WriteLine("It is definitely: " + selectedString);
+    }
+    void OnSelectCity ( ChangeEventArgs e )
+    {
+        selectedCity = "Selected CIty is: " + e.Value?.ToString();
+        Console.WriteLine("It is definitely: " + selectedString);
+    }
+    void Change ( MouseEventArgs args )
+    {
+        listdefault = "Russia";
+    }
+    protected override void OnInitialized ()
+    {
+        citytemplates = india;
+        citydefault = "Chennai";
+        base.OnInitialized();
+    }
+}
