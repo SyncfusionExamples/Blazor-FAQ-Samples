@@ -9,6 +9,13 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSyncfusionBlazor();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("NewPolicy", builder =>
+     builder.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,7 +31,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseCors("NewPolicy");
+app.UseAuthorization();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
