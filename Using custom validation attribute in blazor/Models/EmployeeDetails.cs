@@ -7,7 +7,8 @@ namespace BlazorServerApp.Models
         [Required]
         public string? Name { get; set; }
         //Here OrganizationValidation is a Customvalidation Attribute
-        [OrganizationValidation]
+        [Required]
+        [OrganizationValidation(ErrorMessage = "Invalid customer   log-in.", ValidOrganizationName = "Syncfusion")]
         public string? Organization { get; set; }
     }
 }
