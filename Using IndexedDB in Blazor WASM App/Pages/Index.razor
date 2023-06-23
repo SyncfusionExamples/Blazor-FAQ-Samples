@@ -1,0 +1,58 @@
+﻿@page "/"
+@inject IIndexedDbFactory DbFactory
+<h1>employee</h1>
+
+@if (employee != null)
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var Employee in employee)
+            {
+                        <tr>
+                            <td>@Employee.Id</td>
+                            <td>@Employee.FirstName</td>
+                            <td>@Employee.LastName</td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
+<fieldset>
+    <legend>Add new Employee</legend>
+    <EditForm Model="@newEmployee" OnValidSubmit="@SaveNewEmployee">
+        <InputText @bind-Value="@newEmployee.FirstName" placeholder="First name..." />
+        <InputText @bind-Value="@newEmployee.LastName" placeholder="Last name..." />
+        <button type="submit">Add</button>
+
+        <p><ValidationSummary /></p>
+        <DataAnnotationsValidator />
+    </EditForm>
+</fieldset>
+@code {
+    List<Employee>? employee;
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var db = await DbFactory.Create<IndexDb>();
+        employee = db.employee.ToList();
+    }
+    Employee newEmployee = new Employee();
+
+    async Task SaveNewEmployee ()
+    {
+        using var db = await this.DbFactory.Create<IndexDb>();
+        db.employee.Add(newEmployee);
+        await db.SaveChanges();
+
+        // Refresh list and reset the form
+        newEmployee = new Employee();
+        await OnInitializedAsync();
+    }
+}
