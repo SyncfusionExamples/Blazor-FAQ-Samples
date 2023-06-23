@@ -15,7 +15,7 @@ namespace Blazor_WebAssembly_App.Data
     public class Employee
     {
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string? FirstName { get; set; }
