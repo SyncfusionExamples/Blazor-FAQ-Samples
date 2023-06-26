@@ -1,0 +1,66 @@
+﻿@inherits LayoutComponentBase
+@using System.Timers  
+@inject NavigationManager UriHelper  
+@inject IJSRuntime JSRuntime  
+<PageTitle>BlazorServerAutoLogout</PageTitle> 
+
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4 auth">
+            <LoginDisplay />
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+@code {  
+    [CascadingParameter]
+    private Task<AuthenticationState>? stateAuthenticate { get; set; }
+    private Timer? timerObj;
+
+    protected override async Task OnInitializedAsync ()
+    {
+    }
+    protected override async Task OnAfterRenderAsync ( bool firstRender )
+    {
+        if (firstRender)
+        {
+            // Set the Timer delay.  5000 milliseconds, you can change it to 10 mins.  
+            timerObj = new Timer(5000);
+            timerObj.Elapsed += UpdateTimer;
+            timerObj.AutoReset = false;
+            // Identify whether the user is active or inactive using onmousemove and onkeypress in JS function.  
+            await JSRuntime.InvokeVoidAsync("timeOutCall", DotNetObjectReference.Create(this));
+            //StateHasChanged();  
+        }
+    }
+    [JSInvokable]
+    public void TimerInterval ()
+    {
+        // Resetting the Timer if the user in active state.  
+        timerObj?.Stop();
+        // Call the TimeInterval to logout when the user is inactive.  
+        timerObj?.Start();
+    }
+
+    private void UpdateTimer ( Object? source, ElapsedEventArgs? e )
+    {
+        InvokeAsync(async () =>
+        {
+            // Log out when the user is inactive.  
+            var authstate = await stateAuthenticate;
+            if (authstate!.User!.Identity!.IsAuthenticated)
+            {
+                UriHelper.NavigateTo("/Identity/Account/LogOut", true);
+            }
+        });
+    }
+}   
