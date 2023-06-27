@@ -1,0 +1,14 @@
+﻿@page "/"
+
+<div class="menu @(IsOpen ? "open" : "")"></div>
+
+<button @onclick="@AddClass">Add Class</button>
+@code {
+
+    private bool IsOpen { get; set; } = false;
+
+    private void AddClass ()
+    {
+        IsOpen = !IsOpen;
+    }
+}
