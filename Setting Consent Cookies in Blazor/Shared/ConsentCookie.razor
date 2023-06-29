@@ -1,39 +1,32 @@
-﻿@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Http.Features
 @using Microsoft.AspNetCore.Http
-
 @inject IHttpContextAccessor Http
 @inject IJSRuntime JSRuntime
 
-
 @if (showBanner)
 {
-    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert" style="margin-top: auto;">
-        This app only uses strictly necessary cookies to function. No personal data is collected
-        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" @onclick="AcceptMessage">
-            Accept Cookies
+    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
+        Consent to set cookies.
+        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString" @onclick="AcceptMessage">
+            Accept Cookie
         </button>
     </div>
 }
 @code {
-    bool showBanner = true;
+    ITrackingConsentFeature consentFeature;
+    bool showBanner;
+    string cookieString;
 
-    protected override async Task OnAfterRenderAsync ( bool firstRender )
+    protected override void OnInitialized()
     {
-        if (firstRender)
-        {
-            var cookiePolicyAccepted = await JSRuntime.InvokeAsync<bool>("GetCookiePolicyAccepted");
-            if (cookiePolicyAccepted == true)
-            {
-                showBanner = true;
-                StateHasChanged();
-            }
-        }
+        consentFeature = Http.HttpContext.Features.Get<ITrackingConsentFeature>();
+        showBanner = !consentFeature?.CanTrack ?? false;
+        cookieString = consentFeature?.CreateConsentCookie();
     }
 
-
-    private async Task AcceptMessage()
+    private void AcceptMessage()
     {
-        await  JSRuntime.InvokeVoidAsync("SetCookiePolicyAccepted");
-        showBanner = false;
+        // JsInterop call to store the consent cookies.
+        JSRuntime.InvokeVoidAsync("CookieFunction.acceptMessage", cookieString);
     }
 }

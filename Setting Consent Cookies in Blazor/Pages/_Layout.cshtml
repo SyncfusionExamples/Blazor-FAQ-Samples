@@ -29,19 +29,11 @@
 
     <script src="_framework/blazor.server.js"></script>
     <script>
-        function SetCookiePolicyAccepted() {
-            localStorage.setItem('CookiePolicyAccepted', 'true');
-        }
-
-        function GetCookiePolicyAccepted() {
-            const cookiePolicy = localStorage.getItem('CookiePolicyAccepted');
-            if (cookiePolicy === 'true') {
-                return true;
+        window.CookieFunction = {
+            acceptMessage: function (cookieString) {
+                document.cookie = cookieString;
             }
-            else {
-                return false;
-            }
-        }
+        };    
 
     </script>
 </body>
