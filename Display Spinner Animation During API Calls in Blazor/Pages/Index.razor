@@ -7,7 +7,7 @@
 </p>
 
 <button class="btn btn-primary" @onclick="@IncrementCount"> Click me </button>
-<button class="btn btn-dark" @onclick="@AsyncCallBack"> API Call Back </button>
+<button class="btn btn-dark" @onclick="@AsyncCallback"> API Callback </button>
 
 @code {
     int currentCount = 0;
@@ -17,14 +17,14 @@
         currentCount++;
     }
 
-    async Task AsyncCallBack ()
+    async Task AsyncCallback ()
     {
         spin = true;
-        await Task.Run(() => APICallBack());  //<==check this!!!
+        await Task.Run(() => APICallback());  //<==check this!!!
         currentCount++;
         spin = false;
         await Task.CompletedTask;
     }
 
-    void APICallBack () => Task.Delay(1500).Wait();
+    void APICallback () => Task.Delay(1500).Wait();
 }
