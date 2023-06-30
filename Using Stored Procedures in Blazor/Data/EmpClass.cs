@@ -8,7 +8,7 @@ namespace BlazorServerApp.Data
         public int Empid { get; set; }
         public string? Empname { get; set; }
         public string? Department { get; set; }
-        public DateTime Joindate { get; set;}
+        public DateTime joinDate { get; set;}
 
     }
 }
