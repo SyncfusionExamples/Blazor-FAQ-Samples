@@ -1,20 +1,31 @@
-﻿@page "/"
+@page "/"
+
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 
-<h2>@Name</h2>
-<button @onclick="Clear">Clear LocalStorage</button>
+<h3>Checkbox Example</h3>
+
+<input type="checkbox" checked="@isChecked" @onchange="HandleCheckboxChange" /> 
+
+<p>Checkbox State: @isChecked.ToString()</p>
+
+
 @code {
-    public string? Name;
+    public bool isChecked;
+
     protected override async Task OnAfterRenderAsync ( bool firstRender )
     {
-        await localStorage.SetItemAsync("ID", "20019");
-        await localStorage.SetItemAsync("Name", "John Smith");
-        Name = "ID: " + await localStorage.GetItemAsync<string>("ID") + "Name : " + await localStorage.GetItemAsync<string>("Name");
-    }
-    public async void Clear ()
-    {
-        //this will clear the local storage
-        await localStorage.ClearAsync();
+        if (firstRender)
+        {
+            isChecked = await localStorage.GetItemAsync<bool>("Checkbox State");
+            StateHasChanged();
+        }    
     }
 
+    private async Task HandleCheckboxChange ( ChangeEventArgs? e )
+    {
+        isChecked = (bool)e.Value;
+        await localStorage.SetItemAsync("Checkbox State", isChecked);
+        await InvokeAsync(StateHasChanged);
+    }
+    
 }
