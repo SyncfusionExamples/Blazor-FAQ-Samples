@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inject IJSRuntime JSRuntime
 <p>Here created cookies</p>
+<button onclick="@(() => CreateCookie("myCookie", "myValue", 7))">Create Cookie</button>
 @code {
 
     private async void CreateCookie ( string name, string value, int days )
