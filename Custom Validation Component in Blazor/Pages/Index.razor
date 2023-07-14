@@ -37,9 +37,10 @@
      public class Login
      {
          [Required]
+         [CustomValidation(ErrorMessage = "The entered username is wrong ", ValidUserName = "admin")]
          public string? UserName { get; set; }
+         
          [Required]
-         [CustomValidation(ErrorMessage = "The entered password is wrong ", ValidPassword = "Blazor")]
          public string? Password { get; set; }
      }
  } 
