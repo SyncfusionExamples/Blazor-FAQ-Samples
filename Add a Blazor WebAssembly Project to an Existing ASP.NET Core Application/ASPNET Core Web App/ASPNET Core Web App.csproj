@@ -9,8 +9,7 @@
 
   <ItemGroup>
 	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.0" />
-  
-    <ProjectReference Include="..\..\..\New folder\FAQ\Blazor-FAQ-Samples\Add a Blazor WebAssembly Project to an Existing ASP.NET Core Application\BlazorApp\BlazorApp.csproj" />
+          <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
   </ItemGroup>
 
 </Project>
