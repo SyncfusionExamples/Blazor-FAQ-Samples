@@ -1,27 +1,27 @@
-﻿@page "/"
+@page "/"
+<h3>List Binding Example</h3>
 
-<h1>Bind List</h1>
-
-<button class="btn btn-primary" @onclick="Generate">Generate and Bind to List</button>
-
-@if (list != null)
-{
-    @foreach (var item in list)
+<ul>
+    @foreach (var item in itemList)
     {
-                <li>@item</li>
+        <li>
+            <input type="text" @bind="@item.Name" />
+        </li>
     }
-}
+</ul>
+
+<button @onclick="AddNewItem">Add Item</button>
 
 @code {
-    List<int>? list;
-    const int cMaxNumbers = 10;
+    List<ItemModel> itemList = new List<ItemModel>();
 
-    protected void Generate ()
+    void AddNewItem ()
     {
-        list = new List<int>(cMaxNumbers);
-        for (int i = 0; i < cMaxNumbers; i++)
-        {
-            list.Add(i);
-        }
+        itemList.Add(new ItemModel());
+    }
+
+    public class ItemModel
+    {
+        public string? Name { get; set; }
     }
 }
