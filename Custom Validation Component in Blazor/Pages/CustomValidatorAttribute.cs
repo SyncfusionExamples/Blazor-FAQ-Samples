@@ -3,12 +3,12 @@ namespace BlazorServerApp.Pages
 {
     public class CustomValidationAttribute : ValidationAttribute
     {
-        public string? ValidPassword { get; set; }
+        public string? ValidUserName { get; set; }
 
-        protected override ValidationResult? IsValid ( object? password, ValidationContext validationContext )
+        protected override ValidationResult? IsValid ( object? username, ValidationContext validationContext )
         {
-            var content = password?.ToString()?.ToLower();
-            if (content!.Equals(ValidPassword?.ToLower()))
+            var content = username?.ToString()?.ToLower();
+            if (content!.Equals(ValidUserName?.ToLower()))
             {
                 return null;
             }
