@@ -1,9 +1,14 @@
 @page "/"
-@using BlazorApp
+
 <h1>Parent Component</h1>
 
-<Child_component @bind-Password="_password" />
+<Child_component PasswordChanged="ReceiveDataFromChild" />
+<p>Received Data from Child Component: @receivedData</p>
 
 @code {
-    private string? _password;
- }
+    private string? receivedData;
+    private void ReceiveDataFromChild ( string data )
+    {
+        receivedData = data;
+    }
+}
