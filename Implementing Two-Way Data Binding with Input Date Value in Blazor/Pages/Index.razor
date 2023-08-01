@@ -1,19 +1,9 @@
-﻿@page "/"
+@page "/"
 
-<EditForm Model="@_test">
-    <InputDate @bind-Value="_test.DateValue" />
-</EditForm>
+<h3>Selected Date: @selectedDate</h3>
 
-<br />
-
-<p>Selected Date: @_test.DateValue.ToLongDateString()</p>
+<input type="date" @bind="selectedDate" />
 
 @code {
-
-    public class TestClass
-    {
-        public DateTime DateValue { get; set; }
-    }
-
-    private TestClass _test = new TestClass();
+    private DateTime selectedDate = DateTime.Now;
 }
