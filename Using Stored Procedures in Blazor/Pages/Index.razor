@@ -19,10 +19,9 @@
         </tr>
         <tr>
             <td>Joindate</td>
-            <td><InputDate @bind-Value="ec.Jointdate"></InputDate></td>
+            <td><InputDate @bind-Value="ec.joinDate"></InputDate></td>
         </tr>
         <tr>
-            <td>Joindate</td>
             <td><input type="submit" value="Insert"/></td>
         </tr>
     </table>
@@ -33,6 +32,6 @@
     void Insertdata ()
     {
         ec.Empid = 0;
-        Service.Addnewrec(ec);
+        Service.AddNewRecord(ec);
     }
 }
