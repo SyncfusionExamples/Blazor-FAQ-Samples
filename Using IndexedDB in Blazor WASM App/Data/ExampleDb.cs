@@ -4,18 +4,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Blazor_WebAssembly_App.Data
 {
-    public class ExampleDb : IndexedDb
+    public class IndexDb : IndexedDb
     {
-        public ExampleDb ( IJSRuntime jSRuntime, string name, int version ) : base(jSRuntime, name, version) { }
+        public IndexDb ( IJSRuntime jSRuntime, string name, int version ) : base(jSRuntime, name, version) { }
 
         // These are like tables. Declare as many of them as you want.
-        public IndexedSet<Person> People { get; set; }
+        public IndexedSet<Employee> employee { get; set; }
     }
 
-    public class Person
+    public class Employee
     {
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string? FirstName { get; set; }

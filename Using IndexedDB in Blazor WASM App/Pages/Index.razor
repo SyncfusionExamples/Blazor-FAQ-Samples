@@ -1,34 +1,38 @@
-﻿@page "/"
+@page "/"
 @inject IIndexedDbFactory DbFactory
-<h1>People</h1>
+<h1>employee</h1>
 
-@if (people != null)
+@if (employee != null)
 {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach (var person in people)
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th></th> <!-- Delete column -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Employee in employee)
             {
-                        <tr>
-                            <td>@person.Id</td>
-                            <td>@person.FirstName</td>
-                            <td>@person.LastName</td>
-                        </tr>
+                <tr>
+                    <td>@Employee.Id</td>
+                    <td>@Employee.FirstName</td>
+                    <td>@Employee.LastName</td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="() => DeleteEmployee(Employee.Id)">Delete</button>
+                    </td>
+                </tr>
             }
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 }
 <fieldset>
-    <legend>Add new person</legend>
-    <EditForm Model="@newPerson" OnValidSubmit="@SaveNewPerson">
-        <InputText @bind-Value="@newPerson.FirstName" placeholder="First name..." />
-        <InputText @bind-Value="@newPerson.LastName" placeholder="Last name..." />
+    <legend>Add new Employee</legend>
+    <EditForm Model="@newEmployee" OnValidSubmit="@SaveNewEmployee">
+        <InputText @bind-Value="@newEmployee.FirstName" placeholder="First name..." />
+        <InputText @bind-Value="@newEmployee.LastName" placeholder="Last name..." />
         <button type="submit">Add</button>
 
         <p><ValidationSummary /></p>
@@ -36,23 +40,41 @@
     </EditForm>
 </fieldset>
 @code {
-    List<Person>? people;
+    List<Employee>? employee;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync ()
     {
-        using var db = await DbFactory.Create<ExampleDb>();
-        people = db.People.ToList();
+        await RefreshEmployeeList();
     }
-    Person newPerson = new Person();
 
-    async Task SaveNewPerson ()
+    Employee newEmployee = new Employee();
+
+    async Task RefreshEmployeeList ()
     {
-        using var db = await this.DbFactory.Create<ExampleDb>();
-        db.People.Add(newPerson);
+        using var db = await DbFactory.Create<IndexDb>();
+        employee = db.employee.ToList();
+    }
+
+    async Task SaveNewEmployee ()
+    {
+        using var db = await this.DbFactory.Create<IndexDb>();
+        db.employee.Add(newEmployee);
         await db.SaveChanges();
 
         // Refresh list and reset the form
-        newPerson = new Person();
-        await OnInitializedAsync();
+        newEmployee = new Employee();
+        await RefreshEmployeeList();
+    }
+
+    async Task DeleteEmployee ( int id )
+    {
+        using var db = await this.DbFactory.Create<IndexDb>();
+        var employeeToDelete = db.employee.FirstOrDefault(e => e.Id == id);
+        if (employeeToDelete != null)
+        {
+            db.employee.Remove(employeeToDelete);
+            await db.SaveChanges();
+            await RefreshEmployeeList();
+        }
     }
 }
