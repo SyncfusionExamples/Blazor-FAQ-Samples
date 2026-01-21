@@ -1,18 +1,16 @@
-﻿@page "/"
-@inject IJSRuntime JSRuntime
+@page "/"
 
-<div class="buttons">
-    @for (int i = 0; i < 5; i++)
-    {
-        var index = i;
-        <button type="button" class="btn btn-primary" onclick="@(() => ButtonClicked(index))">Button @i</button>
-    }
-</div>
+<h3>Button Example</h3>
+
+<button @onclick="ButtonClick">Click Me!</button>
+
+<p>@message</p>
 
 @code {
-    private async Task ButtonClicked(int index)
-    {        
-        await JSRuntime.InvokeVoidAsync("console.log", $"Button clicked with index: {index}");
-    }
-} 
+    private string message = "";
 
+    private void ButtonClick ()
+    {
+        message = "Button clicked!";
+    }
+}
