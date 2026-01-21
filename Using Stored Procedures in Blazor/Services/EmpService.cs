@@ -10,9 +10,9 @@ namespace BlazorServerApp.Services
         {
             _dbcontext = _db;
         }
-        public EmpClass Addnewrec ( EmpClass? ec)
+        public EmpClass AddNewRecord ( EmpClass? ec)
         {
-            _dbcontext!.Database.ExecuteSqlRaw("InsertEmpdetails {0},{1},{2}", ec?.Empname!, ec?.Department!, ec!.Jointdate);
+            _dbcontext!.Database.ExecuteSqlRaw("InsertEmpdetails {0},{1},{2}", ec?.Empname!, ec?.Department!, ec!.joinDate);
             _dbcontext.SaveChanges();
             return ec;
         }
